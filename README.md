@@ -1,5 +1,7 @@
 # Golang binding for wordexp(3), fnmatch(3)
 
+[API reference](http://godoc.org/github.com/wtnb75/go-wordexp)
+
 ## Usage
 
 - go get github.com/wtnb75/go-wordexp
