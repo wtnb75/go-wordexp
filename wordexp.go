@@ -23,6 +23,11 @@ char *get_nth(wordexp_t *we, int n){
 wordexp_t *new_we(){
 	return calloc(1, sizeof(wordexp_t));
 }
+
+void free_we(wordexp_t *we){
+	wordfree(we);
+	free(we);
+}
 */
 import "C"
 
@@ -87,6 +92,7 @@ func (f *FnMatchError) Error() string {
 func WordExp(pattern string, flags int) (res []string, err error) {
 	res = []string{}
 	we := C.new_we()
+	defer C.free_we(we)
 	retval := int(C.wordexp(C.CString(pattern), we, C.int(flags)))
 	if retval != 0 {
 		err = &WordExpError{val: retval}
